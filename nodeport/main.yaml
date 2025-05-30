@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeport-deployment
+  labels:
+    app: nodeport
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodeport
+  template:
+    metadata:
+      labels:
+        app: nodeport
+    spec:
+      containers:
+      - name: nodeport-app
+        image: algheglobal/networking_k8s:1.0
+        ports:
+        - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodeport-svc
+  labels:
+    app: nodeport
+spec:
+  selector:
+    app: nodeport
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+      nodePort: 30000

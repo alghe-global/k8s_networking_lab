@@ -1,0 +1,8 @@
+--- routing/pre-apply/networking-lab-m02/networking-lab-m02_pre-apply.routing	2025-05-20 13:49:56.796407748 +0100
++++ routing/post-apply/networking-lab-m02/networking-lab-m02_post-apply.routing	2025-05-20 13:52:13.736437119 +0100
+@@ -1,4 +1,5 @@
+ default via 192.168.49.1 dev eth0 
+ 10.244.0.0/24 via 192.168.49.2 dev eth0 
++10.244.1.2 dev veth6d13aa59 scope host 
+ 172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 linkdown 
+ 192.168.49.0/24 dev eth0 proto kernel scope link src 192.168.49.3
